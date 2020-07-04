@@ -14,3 +14,16 @@ The program will pick a random 5 letter word that the user will try to guess. Th
 - Different word lengths as a measure of difficulty.
 - Options for keeping tabs on which letters you've guessed.
 - Hints.
+
+---
+
+## Files
+
+- **wordmastermind.py** - This is the program.
+- **10000-words.txt** - The word list.
+
+## Usage
+
+1. Download the .py file and the word list.
+2. Place both files in same directory.
+3. ```python3 wordmastermind.py```
