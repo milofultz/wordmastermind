@@ -18,31 +18,40 @@ def word_picker(lst):
 	return word
 
 def game(word):
-	game_display()
+	intro_display()
 
 	guess_count = 0
 	score = 0
 
+	guesses_list = []
+
 	while True:
 		guess = ask_for_word()
-
 		length = len(guess)
-		if length == 5:
-			guess_count += 1
-		if guess == word:
-			break
-		score = checker(guess, word)
 
 		if guess == 'cheater':
 			print('The word is ' + word + '. Press any key to continue...')
 			input()
+			continue
 
-		game_display()
-		display_status(guess_count, score, guess, length)
+		if length == 5:
+			guess_count += 1
+		else:
+			print('Make sure your guess is 5 characters long.\n')
+			continue
+		
+		if guess == word:
+			break
+		
+		score = checker(guess, word)
+		guesses_list.append((guess, score))
+
+		intro_display()
+		display_status(guess_count, score, guesses_list, guess, length)
 		
 	print(f'\nYou won! The word was {word}.\n')
 
-def game_display():
+def intro_display():
 	os.system('clear')
 	print('The computer has chosen a 5 letter word. Can you guess what it is?\n')
 
@@ -59,15 +68,13 @@ def checker(word1, word2):
 
 	return result
 
-def display_status(guess_count, common_letters, guessed_word='', length=5):
+def display_status(guess_count, common_letters, guesses_list, guessed_word='', length=5):
 	print(f'You have made {guess_count} guesses so far.')
-	if length != 5:
-		print('Make sure your guess is 5 characters long.')
-		pass
-	else:
-		print(f'There were {common_letters} common letters between your guess ' +
-		'and your target.')
-
+	print(f'There were {common_letters} common letters between the word ' +
+		f'\'{guessed_word}\' and your target.\n')
+	for word, score in guesses_list[-10:]:
+		print(word + ':' + str(score))
+	print()
 
 if __name__ == '__main__':
 	word_lst = word_list_handler()
