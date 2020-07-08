@@ -1,6 +1,7 @@
 from collections import Counter
 import os
 import random
+import string
 
 def word_list_handler(filename='10000-words.txt'):
 	word_lst = []
@@ -23,7 +24,7 @@ def game(word):
 	score = 0
 
 	guesses_list = []
-	alphabet_list = []
+	alphabet = string.ascii_uppercase
 
 	while True:
 		guess = ask_for_word()
@@ -43,13 +44,14 @@ def game(word):
 		if guess == word:
 			break
 		
-		# alphabet_list = list_compare(guess, alphabet_list)
+		alphabet = alph_compare(guess, alphabet)
 
 		score = checker(guess, word)
 		guesses_list.append((guess, score))
 
 		intro_display()
-		display_status(guess_count, score, guesses_list, guess, length)
+		display_status(guess_count, score, guesses_list, 
+			alphabet, guess, length)
 		
 	print(f'\nYou won! The word was {word}.\n')
 
@@ -61,12 +63,12 @@ def ask_for_word():
 	word = input("What is your guess? ").lower()
 	return word
 
-def list_compare(guess, lst):
-	for char in guess:
-		if char in lst:
-			lst.remove(char)
+def alph_compare(guess, alph):
+	for char in guess.upper():
+		if char in alph:
+			alph = alph.replace(char, '')
 
-	return lst
+	return alph
 
 def checker(word1, word2):
 	word1_cnt = Counter(word1)
@@ -77,10 +79,11 @@ def checker(word1, word2):
 
 	return result
 
-def display_status(guess_count, common_letters, guesses_list, guessed_word='', length=5):
+def display_status(guess_count, common_letters, guesses_list, alphabet_used, guessed_word='', length=5):
 	print(f'You have made {guess_count} guesses so far.')
 	print(f'There were {common_letters} common letters between the word ' +
-		f'\'{guessed_word}\' and your target.\n')
+		f'\'{guessed_word}\' and your target.')
+	print(f'Letters guessed: {alphabet_used}\n')
 	for word, score in guesses_list[-10:]:
 		print(word + ':' + str(score))
 	print()
