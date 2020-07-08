@@ -1,4 +1,4 @@
-#Wordsmash Explosion
+# Wordsmash Explosion
 ---
 
 ## The Game
