@@ -2,7 +2,6 @@ from collections import Counter
 import os
 import random
 
-
 def word_list_handler(filename='10000-words.txt'):
 	word_lst = []
 
@@ -24,6 +23,7 @@ def game(word):
 	score = 0
 
 	guesses_list = []
+	alphabet_list = []
 
 	while True:
 		guess = ask_for_word()
@@ -43,6 +43,8 @@ def game(word):
 		if guess == word:
 			break
 		
+		# alphabet_list = list_compare(guess, alphabet_list)
+
 		score = checker(guess, word)
 		guesses_list.append((guess, score))
 
@@ -58,6 +60,13 @@ def intro_display():
 def ask_for_word():
 	word = input("What is your guess? ").lower()
 	return word
+
+def list_compare(guess, lst):
+	for char in guess:
+		if char in lst:
+			lst.remove(char)
+
+	return lst
 
 def checker(word1, word2):
 	word1_cnt = Counter(word1)

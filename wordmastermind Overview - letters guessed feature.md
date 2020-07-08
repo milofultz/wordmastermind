@@ -7,6 +7,8 @@ Program will display a list that shows which letters have not been guessed yet. 
 
 **From there, now describe how your feature will handle data. Start BIG as possible.**
 
+The feature will display all letters unguessed on screen. IN: list, alphabet; OUT: none (display)
+
 The feature will take in each guess and remove any letters guessed that are still present in the list. IN: string, guess; OUT: none (edited list)
 
 **Break down the process further in abstract terms. What are the distinct actions it will need to take? What would a random stupid guy need if you wanted him to do it?**
@@ -14,3 +16,6 @@ The feature will take in each guess and remove any letters guessed that are stil
 - Program will get user guess and alphabet list
 - Program will compare letters in user guess to alphabet list
 - Any letters that are present in both will be removed from the alphabet list
+
+- Program will get alphabet list
+- Program will display them all on-screen
