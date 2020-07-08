@@ -12,8 +12,8 @@ The program will pick a random 5 letter word that the user will try to guess. Th
 ## Future Implementation
 
 - Different word lengths as a measure of difficulty.
-- Options for keeping tabs on which letters you've guessed.
 - Hints.
+- ~~Options for keeping tabs on which letters you've guessed.~~
 
 ---
 
